@@ -1,0 +1,23 @@
+type Time = int;
+type Reservation = 
+ record {
+   endTime: Time;
+   startTime: Time;
+   stationId: nat;
+   userId: text;
+ };
+type ChargingStation = 
+ record {
+   availableSlots: nat;
+   id: nat;
+   location: text;
+   name: text;
+   totalSlots: nat;
+ };
+service : {
+  addChargingStation: (text, text, nat) -> (nat);
+  getAllStations: () -> (vec ChargingStation) query;
+  getReservations: (nat) -> (vec Reservation) query;
+  getStation: (nat) -> (opt ChargingStation) query;
+  makeReservation: (nat, text, Time, Time) -> (bool);
+}
